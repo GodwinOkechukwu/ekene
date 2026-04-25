@@ -52,7 +52,7 @@ export default function ContactSection() {
           className="text-4xl font-bold md:tracking-tight text-[#f0f0fa] sm:text-5xl"
         >
           Let’s <br className="md:hidden"/> create something
-          <span className="contact-gradient px-2">impactful.</span>
+          <span className="contact-gradient px-2"> <br className="md:hidden"/>impactful.</span>
         </motion.h2>
 
         {/* Subtext */}
