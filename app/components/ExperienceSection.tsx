@@ -98,9 +98,9 @@ const experiences: Experience[] = [
       "Develop and maintain responsive, high-performance web interfaces for a leading logistics and supply chain organisation with pan-African operations.",
       "Collaborate with product designers and backend engineers to implement modern UI components and ensure seamless API integration.",
       "Champion frontend best practices including component reusability, performance optimisation, and accessibility compliance.",
-      "Lead implementation of scalable design systems and contribute to technical architecture decisions.",
+      "Implementation of scalable design systems and contribute to technical architecture decisions.",
     ],
-    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS","Chakra UI", "Framer Motion"],
   },
   {
     id: 2,
@@ -112,8 +112,8 @@ const experiences: Experience[] = [
     accentColor: "violet",
     highlights: [
       "Architected Lynspeed, a comprehensive e-learning platform serving 1,000+ students with JAMB prep, career guidance, and skill development tools.",
-      "Built Naijaville, a full-cycle smart rental marketplace with real-time WebSocket communication, achieving a 40% improvement in page load speed.",
-      "Developed Payina, a secure fintech application scoring 98 on Lighthouse — with seamless digital transactions and robust Redux state management.",
+      "Built Naijaville, a full-cycle smart rental marketplace with real-time WebSocket communication.",
+      "Contributed to Payina, a secure fintech application scoring 98 on Lighthouse  with seamless digital transactions and robust Redux state management.",
       "Delivered Miala (logistics & real-time tracking), Dryklin & NXG Job Hub (dual role-based dashboards), and Lynotech (corporate website).",
     ],
     tags: ["React", "Next.js", "TypeScript", "Redux", "WebSockets", "Vite"],
@@ -196,7 +196,7 @@ export default function ExperienceSection() {
             variants={fadeUp(0.1)}
             className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/35"
           >
-            5+ years across startups and enterprise — shipping products that
+            5+ years across startups and enterprise shipping products that
             are fast, accessible, and built to last.
           </motion.p>
         </motion.div>
