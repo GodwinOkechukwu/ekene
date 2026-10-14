@@ -1,6 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import MotionProvider from "./components/motion/MotionProvider";
+import Navbar from "./components/ui/Navbar";
+import Footer from "./components/ui/Footer";
+import { profile } from "./data/profile";
+import { siteDescription, siteTitle, siteUrl } from "./lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,9 +19,39 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ken Portfolio | Frontend Engineer",
-  description:
-    "Frontend web developer portfolio showcasing high-quality React, Next.js, and TypeScript projects with a focus on performance, accessibility, and polished UI.",
+  metadataBase: new URL(siteUrl),
+  title: { default: siteTitle, template: `%s | ${profile.displayName} Godwin` },
+  description: siteDescription,
+  authors: [{ name: profile.name, url: profile.github }],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: siteTitle,
+    description: siteDescription,
+    siteName: `${profile.displayName} Godwin`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#080810",
+  colorScheme: "dark",
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.role,
+  url: siteUrl,
+  email: `mailto:${profile.email}`,
+  address: { "@type": "PostalAddress", addressLocality: "Lagos", addressCountry: "NG" },
+  sameAs: [profile.github, profile.linkedin],
 };
 
 export default function RootLayout({
@@ -25,24 +60,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full scroll-smooth">
+    <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-background font-sans text-foreground antialiased`}
       >
-        <div className="relative flex min-h-screen flex-col">
-          {/* Gradient background glow */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none fixed inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl"
-          >
-            <div className="relative left-1/2 aspect-1108/632 w-289 -translate-x-1/2 bg-[radial-gradient(circle_at_top,var(--color-zinc-200),transparent_60%),radial-gradient(circle_at_bottom,var(--color-zinc-100),transparent_55%)] opacity-60 dark:opacity-40" />
-          </div>
-
-          {/* Main content */}
-          <main className="mx-auto flex w-full max-w-337.5 flex-1 flex-col px-6 pb-10 pt-6 sm:px-8 sm:pb-12 sm:pt-8 lg:px-10 lg:pb-16 lg:pt-10">
-            {children}
-          </main>
-        </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
+        <a
+          href="#main"
+          className="sr-only z-100 rounded-md bg-accent px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
+        <MotionProvider>
+          <Navbar />
+          <main id="main">{children}</main>
+          <Footer />
+        </MotionProvider>
         <Analytics />
       </body>
     </html>

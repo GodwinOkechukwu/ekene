@@ -1,51 +1,31 @@
-import { Variants } from "framer-motion";
+import type { Variants } from "framer-motion";
 
-export const container: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
+export const EASE = [0.22, 0.61, 0.36, 1] as const;
 
-export const fadeUp: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-  },
+export const fadeUp = (delay = 0, distance = 20): Variants => ({
+  hidden: { opacity: 0, y: distance },
   show: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
-    },
+    transition: { duration: 0.6, delay, ease: EASE },
   },
-};
+});
 
-export const fadeIn: Variants = {
-  hidden: { opacity: 0 },
+export const fadeRight = (delay = 0): Variants => ({
+  hidden: { opacity: 0, x: 30 },
   show: {
     opacity: 1,
-    transition: {
-      duration: 0.6,
-    },
+    x: 0,
+    transition: { duration: 0.8, delay, ease: EASE },
   },
-};
+});
 
-export const scaleIn: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.9,
-  },
+export const scaleIn = (delay = 0): Variants => ({
+  hidden: { opacity: 0, scale: 0.92, y: 12 },
   show: {
     opacity: 1,
     scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
-    },
+    y: 0,
+    transition: { duration: 0.45, delay, ease: EASE },
   },
-};
+});
