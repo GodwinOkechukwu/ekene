@@ -9,6 +9,8 @@ export type Project = {
   gradient: string;
   accent: Accent;
   liveUrl?: string;
+  /** Homepage screenshot in /public/projects, shown as the card preview. */
+  image?: string;
   featured: boolean;
   metric?: { value: string; label: string };
 };
@@ -24,6 +26,7 @@ export const projects: Project[] = [
     gradient: "from-amber-600 via-orange-600 to-rose-600",
     accent: "amber",
     liveUrl: "https://poshneka.org/",
+    image: "/projects/poshneka.png",
     featured: true,
   },
   {
@@ -36,6 +39,7 @@ export const projects: Project[] = [
     gradient: "from-indigo-600 via-violet-600 to-purple-700",
     accent: "indigo",
     liveUrl: "https://www.lynspeed.com.ng/",
+    image: "/projects/lynspeed.png",
     featured: true,
     metric: { value: "60+", label: "Components" },
   },
@@ -49,6 +53,7 @@ export const projects: Project[] = [
     gradient: "from-blue-600 via-cyan-600 to-teal-600",
     accent: "blue",
     liveUrl: "https://naijaville.com/",
+    image: "/projects/naijaville.png",
     featured: true,
     metric: { value: "40%", label: "Faster load" },
   },
@@ -62,6 +67,7 @@ export const projects: Project[] = [
     gradient: "from-violet-600 via-pink-600 to-rose-600",
     accent: "violet",
     liveUrl: "https://payina.com.ng/",
+    image: "/projects/payina.png",
     featured: true,
     metric: { value: "98", label: "Lighthouse" },
   },
