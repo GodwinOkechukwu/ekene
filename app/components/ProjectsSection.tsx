@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowUpRight, Github } from "lucide-react";
 import Reveal from "./motion/Reveal";
 import Section from "./ui/Section";
@@ -31,10 +32,22 @@ function FeaturedCard({ project, index }: { project: Project; index: number }) {
       className={`group relative h-full overflow-hidden rounded-2xl border border-white/8 bg-white/2 p-6 transition-colors duration-300 ${accent.border}`}
     >
       <div
-        aria-hidden="true"
-        className={`relative mb-5 h-44 overflow-hidden rounded-xl bg-linear-to-br ${project.gradient}`}
+        className={`relative mb-5 aspect-16/10 overflow-hidden rounded-xl border border-white/8 bg-linear-to-br ${project.gradient}`}
       >
-        <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.08)_2px,rgba(0,0,0,0.08)_4px)]" />
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={`${project.title} homepage preview`}
+            fill
+            sizes="(min-width: 768px) 560px, 100vw"
+            className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          />
+        ) : (
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.08)_2px,rgba(0,0,0,0.08)_4px)]"
+          />
+        )}
         {project.metric && (
           <div className="absolute bottom-3 left-3 rounded-lg border border-white/20 bg-black/30 px-3 py-1.5 backdrop-blur-sm">
             <p className="font-mono text-lg font-bold leading-none text-white">
